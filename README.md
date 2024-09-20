@@ -20,6 +20,10 @@
 3. 이 데이터는 Google Maps API로 전달되어 사용자의 위치를 중심으로 지도를 표시합니다.
 4. 지도에 사용자의 정확한 위치를 나타내는 마커가 표시됩니다.
 
-# Use Cases:
+### Use Cases:
 위치 기반 서비스 및 애플리케이션(예: 배달 추적, 인근 추천) <br>
 위치 기반 콘텐츠에 대한 실시간 지도 통합 시연
+
+## Preview
+
+<img width="866" alt="image" src="https://github.com/user-attachments/assets/2adf481e-5928-4318-8cdd-cca51e3e1c2b">
