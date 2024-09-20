@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location-based Map</title>
+    <style>
+        /* 지도 스타일 설정 */
+        #map {
+            width: 800px;
+            height: 800px;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>현재 위치</h1>
+    <div id="map"></div>
+
+    <script>
+        function initMap() {
+            // 브라우저에서 위치 정보를 가져오는 함수
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    const userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    // Google Maps를 초기화하고 사용자 위치에 마커 표시
+                    const map = new google.maps.Map(document.getElementById('map'), {
+                        center: userLocation,
+                        zoom: 15
+                    });
+
+                    const marker = new google.maps.Marker({
+                        position: userLocation,
+                        map: map,
+                        title: "You are here!"
+                    });
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+    </script>
+
+    <!-- Google Maps API를 로드하고 initMap 함수를 호출 -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=<Enter Your Google API Key>&callback=initMap" async
+        defer></script>
+</body>
+
+</html>
