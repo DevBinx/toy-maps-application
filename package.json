@@ -2,12 +2,12 @@
   "name": "toy-maps-application",
   "version": "1.0.0",
   "description": "이 프로젝트는 Express.js와 Google Maps API를 사용하여 사용자의 현재 위치를 지도에 표시하는 간단한 동적 웹 애플리케이션입니다. 이 애플리케이션은 HTML5 Geolocation API를 활용하여 사용자의 실시간 지리적 위치를 가져오고, Google Maps API와 통합하여 완전히 상호작용 가능한 지도에 위치를 렌더링합니다.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "DevBinx",
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.0",
