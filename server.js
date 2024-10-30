@@ -3,13 +3,14 @@ const mysql = require('mysql2');
 const app = express();
 const port = 3000;
 const path = require('path');
+require('dotenv').config();  // .env 파일 로드
 
 // MySQL 연결 설정
 const db = mysql.createConnection({
-    host: '192.168.201.115',
-    user: 'root',      // MySQL 사용자 이름
-    password: 'root123!@#',      // MySQL 비밀번호
-    database: 'large_data_db'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
 });
 
 // MySQL 연결
@@ -29,15 +30,12 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-
 // 위치 기반 데이터를 조회하는 API
 app.get('/data', (req, res) => {
-    const location = req.query.location || 'Seoul';
-
-    const query = 'SELECT * FROM location_data';
+    const query = 'SELECT * FROM users';
 
     // 쿼리 실행 및 결과 반환
-    db.query(query, [location], (err, results) => {
+    db.query(query, (err, results) => {
         if (err) {
             return res.status(500).json({ error: 'Database query failed' });
         }
@@ -46,11 +44,8 @@ app.get('/data', (req, res) => {
             return res.status(404).json({ message: 'No data found' });
         }
 
-        // 쿼리 결과 반환
-        res.json({
-            location: results[0].location,
-            data: results[0].data_field
-        });
+        // 쿼리 결과 배열을 그대로 반환
+        res.json(results);
     });
 });
 
@@ -58,3 +53,4 @@ app.get('/data', (req, res) => {
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
+
